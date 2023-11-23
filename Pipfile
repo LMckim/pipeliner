@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+psycopg = "*"
+psycopg-pool = "*"
+aiohttp = "*"
+python-dotenv = "*"
+openpyxl = "*"
+
+[dev-packages]
+black = "*"
+mypy = "*"
+
+[requires]
+python_version = "3.10"
