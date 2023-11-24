@@ -5,6 +5,7 @@ from openpyxl.worksheet.worksheet import Worksheet
 
 from src.twelvedata import TimeSeriesData
 
+
 def populate_sheet(sheet: Worksheet, symbol_data: list[TimeSeriesData]) -> None:
     sheet.append(["Price", "DateTime", "Price"])
     for row in symbol_data:
@@ -17,7 +18,9 @@ def populate_sheet(sheet: Worksheet, symbol_data: list[TimeSeriesData]) -> None:
         )
 
 
-def write_timeseries_to_excel(output_file: str, data: dict[str, TimeSeriesData]) -> None:
+def write_timeseries_to_excel(
+    output_file: str, data: dict[str, TimeSeriesData]
+) -> None:
     xl = openpyxl.Workbook()
     for symbol in data.keys():
         logging.info(f"Writing XL Sheet {symbol}")
