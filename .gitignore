@@ -2,3 +2,6 @@
 
 .env
 data.json
+
+*.pyc
+*.xlsx
