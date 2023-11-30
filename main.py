@@ -23,16 +23,19 @@ async def main():
         symbols,
     )
     write_timeseries_to_excel("output.xlsx", data)
+    try:
+        aconn = await psycopg.AsyncConnection.connect(
+            host=os.environ["PG_HOST"],
+            user=os.environ["PG_USER"],
+            password=os.environ["PG_PASS"],
+            dbname=os.environ["PG_DBNAME"],
+            port=os.environ["PG_PORT"],
+        )
 
-    aconn = await psycopg.AsyncConnection.connect(
-        host=os.environ["PG_HOST"],
-        user=os.environ["PG_USER"],
-        password=os.environ["PG_PASS"],
-        dbname=os.environ["PG_DBNAME"],
-        port=os.environ["PG_PORT"],
-    )
-
-    await upload_symbol_data(aconn, data)
+        await upload_symbol_data(aconn, data)
+    except Exception as e:
+        logging.exception(e)
+        logging.critical("Could not connect to database")
 
 
 if __name__ == "__main__":
