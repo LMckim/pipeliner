@@ -19,7 +19,7 @@ def populate_sheet(sheet: Worksheet, symbol_data: list[TimeSeriesData]) -> None:
 
 
 def write_timeseries_to_excel(
-    output_file: str, data: dict[str, TimeSeriesData]
+    output_file: str, data: dict[str, list[TimeSeriesData]]
 ) -> None:
     xl = openpyxl.Workbook()
     for symbol in data.keys():
