@@ -68,14 +68,14 @@ async def get_time_series_data(endpoint: str, api_key: str, symbols: list[str]):
                 data = json.loads(str(await resp.content.read(), encoding="utf8"))
                 # single symbol
                 if "meta" in data:
-                    data: TimeSeriesResponse
+                    data: TimeSeriesResponse  # type: ignore
                     meta = data["meta"]
                     symbol = meta["symbol"]
                     ts_data[symbol] = parse_values(symbol, data["values"])
 
                 else:
                     # multiple symbols
-                    data: dict[str, TimeSeriesResponse]
+                    data: dict[str, TimeSeriesResponse]  # type: ignore
                     for symbol, ticker_data in data.items():
                         meta = ticker_data["meta"]
                         symbol = meta["symbol"]
